@@ -2,6 +2,7 @@
 agp = "8.9.0"
 converterMoshi = "2.11.0"
 hiltAndroid = "2.56.1"
+hiltNavigationCompose = "1.0.0"
 kotlin = "2.0.21"
 ksp = "2.0.21-1.0.25"
 coreKtx = "1.15.0"
@@ -17,6 +18,7 @@ retrofit = "2.11.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "converterMoshi" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
