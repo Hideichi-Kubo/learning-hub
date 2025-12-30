@@ -1,6 +1,5 @@
 package com.example.unsplashclient.data.remote
 
-
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -16,5 +15,5 @@ data class CurrentUserCollection(
     val title: String?,
     @Json(name = "updated_at")
     val updatedAt: String?,
-    val user: Any?
+    val user: Any?,
 )

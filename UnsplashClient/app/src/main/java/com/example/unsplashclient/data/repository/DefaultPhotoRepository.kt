@@ -6,14 +6,16 @@ import com.example.unsplashclient.data.remote.UnsplashApiService
 import com.example.unsplashclient.domain.repository.PhotoRepository
 import javax.inject.Inject
 
-class DefaultPhotoRepository @Inject constructor(
-    private val apiService: UnsplashApiService
-) : PhotoRepository {
-    override suspend fun searchPhotos(query: String): SearchPhotosResultDto {
-        return apiService.searchPhotos(query)
-    }
+class DefaultPhotoRepository
+    @Inject
+    constructor(
+        private val apiService: UnsplashApiService,
+    ) : PhotoRepository {
+        override suspend fun searchPhotos(query: String): SearchPhotosResultDto {
+            return apiService.searchPhotos(query)
+        }
 
-    override suspend fun getPhotoById(id: String): PhotoDetailDto {
-        return apiService.getPhotoById(id)
+        override suspend fun getPhotoById(id: String): PhotoDetailDto {
+            return apiService.getPhotoById(id)
+        }
     }
-}

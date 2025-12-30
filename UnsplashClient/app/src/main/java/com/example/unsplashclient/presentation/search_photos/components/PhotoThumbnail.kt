@@ -32,51 +32,53 @@ fun PhotoThumbnail(
     onClick: (Photo) -> Unit,
 ) {
     Box(
-        modifier = Modifier
-            .background(Color.Black)
-            .heightIn(min = 200.dp)
-            .clickable { onClick(photo) },
-        contentAlignment = Alignment.BottomCenter
+        modifier =
+            Modifier
+                .background(Color.Black)
+                .heightIn(min = 200.dp)
+                .clickable { onClick(photo) },
+        contentAlignment = Alignment.BottomCenter,
     ) {
         CircularProgressIndicator(
-            modifier = Modifier.align(Alignment.Center)
+            modifier = Modifier.align(Alignment.Center),
         )
         AsyncImage(
             model = photo.imageUrl,
             contentDescription = photo.description,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Black.copy(alpha = 0.5f))
-                .padding(10.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .background(Color.Black.copy(alpha = 0.5f))
+                    .padding(10.dp),
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth(0.8f)
+                modifier = Modifier.fillMaxWidth(0.8f),
             ) {
                 Text(
                     text = photo.description ?: "No Description",
                     color = Color.White,
-                    style = MaterialTheme.typography.headlineSmall
+                    style = MaterialTheme.typography.headlineSmall,
                 )
                 Text(
                     text = photo.photographer ?: "Unknown Photographer",
                     color = Color.White,
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
             Icon(
                 imageVector = Icons.Default.Favorite,
                 contentDescription = "Likes",
-                tint = Color.Magenta
+                tint = Color.Magenta,
             )
             Spacer(modifier = Modifier.width(5.dp))
             Text(
                 text = photo.likes.toString(),
                 color = Color.White,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
             )
         }
     }
@@ -85,13 +87,14 @@ fun PhotoThumbnail(
 @Preview
 @Composable
 private fun PhotoThumbnailPreview() {
-    val photo = Photo(
-        photoId = "",
-        description = "Sample Photo",
-        likes = 100,
-        imageUrl = "https://images.unsplash.com/photo-1764617988939-034265354ad6?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8",
-        photographer = "Kevin Mueller"
-    )
+    val photo =
+        Photo(
+            photoId = "",
+            description = "Sample Photo",
+            likes = 100,
+            imageUrl = "https://images.unsplash.com/photo-1764617988939-034265354ad6?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8",
+            photographer = "Kevin Mueller",
+        )
     UnsplashClientTheme {
         PhotoThumbnail(photo = photo, onClick = {})
     }

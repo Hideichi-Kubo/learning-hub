@@ -1,7 +1,9 @@
 package com.example.unsplashclient.presentation.search_photos
 
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.unsplashclient.common.NetworkResponse
@@ -12,33 +14,37 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchPhotosViewModel @Inject constructor(
-    private val searchPhotosUseCase: SearchPhotosUseCase,
-) : ViewModel() {
+class SearchPhotosViewModel
+    @Inject
+    constructor(
+        private val searchPhotosUseCase: SearchPhotosUseCase,
+    ) : ViewModel() {
+        private val _state = mutableStateOf(SearchPhotosState())
+        val state: State<SearchPhotosState> = _state
 
-    private val _state = mutableStateOf(SearchPhotosState())
-    val state: State<SearchPhotosState> = _state
+        var query by mutableStateOf("programming")
 
-    init {
-        searchPhotos("programming")
+        init {
+            searchPhotos()
+        }
+
+        fun searchPhotos() {
+            searchPhotosUseCase(query).onEach { result ->
+                when (result) {
+                    is NetworkResponse.Success -> {
+                        _state.value =
+                            SearchPhotosState(
+                                isLoading = false,
+                                photos = result.data ?: emptyList(),
+                            )
+                    }
+                    is NetworkResponse.Failure -> {
+                        _state.value = SearchPhotosState(error = result.error)
+                    }
+                    is NetworkResponse.Loading -> {
+                        _state.value = SearchPhotosState(isLoading = true)
+                    }
+                }
+            }.launchIn(viewModelScope)
+        }
     }
-
-    fun searchPhotos(query: String) {
-        searchPhotosUseCase(query).onEach { result ->
-            when (result) {
-                is NetworkResponse.Success -> {
-                    _state.value = SearchPhotosState(
-                        isLoading = false,
-                        photos = result.data ?: emptyList(),
-                    )
-                }
-                is NetworkResponse.Failure -> {
-                    _state.value = SearchPhotosState(error = result.error)
-                }
-                is NetworkResponse.Loading -> {
-                    _state.value = SearchPhotosState(isLoading = true)
-                }
-            }
-        }.launchIn(viewModelScope)
-    }
-}

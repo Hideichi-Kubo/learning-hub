@@ -1,6 +1,5 @@
 package com.example.unsplashclient.data.remote
 
-
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -14,5 +13,5 @@ data class Exif(
     val iso: Int?,
     val make: String?,
     val model: String?,
-    val name: String?
+    val name: String?,
 )
