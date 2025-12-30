@@ -1,6 +1,5 @@
 package com.example.unsplashclient.data.remote
 
-
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -10,5 +9,5 @@ data class LinksXX(
     @Json(name = "download_location")
     val downloadLocation: String?,
     val html: String?,
-    val self: String?
+    val self: String?,
 )

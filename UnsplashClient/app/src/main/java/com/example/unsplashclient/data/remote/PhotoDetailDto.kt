@@ -1,6 +1,5 @@
 package com.example.unsplashclient.data.remote
 
-
 import com.example.unsplashclient.domain.model.PhotoDetail
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -31,7 +30,7 @@ data class PhotoDetailDto(
     val updatedAt: String?,
     val urls: UrlsX?,
     val user: UserX?,
-    val width: Int?
+    val width: Int?,
 )
 
 fun PhotoDetailDto.toPhotoDetail(): PhotoDetail {

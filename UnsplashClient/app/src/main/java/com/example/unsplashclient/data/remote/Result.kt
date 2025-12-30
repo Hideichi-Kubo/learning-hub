@@ -1,6 +1,5 @@
 package com.example.unsplashclient.data.remote
 
-
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -22,5 +21,5 @@ data class Result(
     val links: Links?,
     val urls: Urls?,
     val user: User?,
-    val width: Int?
+    val width: Int?,
 )

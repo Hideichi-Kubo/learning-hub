@@ -1,6 +1,5 @@
 package com.example.unsplashclient.data.remote
 
-
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -21,5 +20,5 @@ data class User(
     val profileImage: ProfileImage?,
     @Json(name = "twitter_username")
     val twitterUsername: String?,
-    val username: String?
+    val username: String?,
 )

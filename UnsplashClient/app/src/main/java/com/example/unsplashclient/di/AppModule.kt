@@ -17,7 +17,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     @Provides
     @Singleton
     fun provideUnsplashApiService(): UnsplashApiService {
@@ -25,8 +24,8 @@ object AppModule {
             .baseUrl(BASE_URL)
             .addConverterFactory(
                 MoshiConverterFactory.create(
-                    Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-                )
+                    Moshi.Builder().add(KotlinJsonAdapterFactory()).build(),
+                ),
             )
             .build()
             .create(UnsplashApiService::class.java)

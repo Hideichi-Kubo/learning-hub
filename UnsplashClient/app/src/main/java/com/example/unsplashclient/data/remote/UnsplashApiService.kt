@@ -9,9 +9,13 @@ import retrofit2.http.Query
 interface UnsplashApiService {
     @Headers("Authorization: Client-ID ${Constants.API_KEY}")
     @GET("search/photos")
-    suspend fun searchPhotos(@Query("query") query: String): SearchPhotosResultDto
+    suspend fun searchPhotos(
+        @Query("query") query: String,
+    ): SearchPhotosResultDto
 
     @Headers("Authorization: Client-ID ${Constants.API_KEY}")
     @GET("photos/{id}")
-    suspend fun getPhotoById(@Path("id") id: String): PhotoDetailDto
+    suspend fun getPhotoById(
+        @Path("id") id: String,
+    ): PhotoDetailDto
 }
