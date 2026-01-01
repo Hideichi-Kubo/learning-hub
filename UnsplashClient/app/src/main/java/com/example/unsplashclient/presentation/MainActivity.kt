@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.unsplashclient.presentation.photo_detail.PhotoDetailScreen
 import com.example.unsplashclient.presentation.search_photos.SearchPhotosScreen
 import com.example.unsplashclient.presentation.ui.theme.UnsplashClientTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +35,7 @@ class MainActivity : ComponentActivity() {
                             SearchPhotosScreen(navController)
                         }
                         composable(route = ScreenRoute.PhotoDetailScreen.route + "/{photoId}") {
-                            Text(text = "Photo Detail Screen")
+                            PhotoDetailScreen()
                         }
                     }
                 }
